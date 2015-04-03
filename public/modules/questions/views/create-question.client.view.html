@@ -10,6 +10,49 @@
                     <div class="controls">
                         <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
                     </div>
+                     <label class="control-label" for="name">Choose a template</label>
+                     <div class="controls">
+                        <input type="radio" ng-model="template.name" value="1">  Multiple Choices <br/>
+                          <input type="radio" ng-model="template.name" ng-value="2"> Short Answers <br/>
+                          <tt>template name/value = {{template.name | json}}</tt><br/>
+                    </div>
+
+                    <label class="control-label" for="name">Question Number</label>
+                    <select ng-model="myColor" ng-options="num.name for num in numberOfQuestions"></select>
+
+                    <div class="controls">
+                        <ul>
+                <li ng-repeat="elemnt in questionelemnt">
+
+                    <div>
+                        <div id={{elemnt.id}} style="display:inline" >
+                            <span  ng-model="elemnt.question" ng-hide="editorEnabled" ng-click="editorEnabled=true">
+                                {{elemnt.question}}
+                            </span>
+                            <div  ng-show="editorEnabled">
+                                <input  ng-model="elemnt.question" ng-show="editorEnabled" >
+                                <button href="#" ng-click="editorEnabled=false">Done editing</button>
+                            </div>
+                        </div>
+                        <div style="display:inline">
+                            <span>
+                                <input type="text" ng-model="elemnt.answer" placeholder="Answer" required/>
+                            </span>
+                        </div>
+                        <span>
+                            <input ng-click="inlinef($event,elemnt.id)" type="checkbox" ng-model="elemnt.inline" placeholder="Answer" required>Inline</input>
+                        </span>
+                        <span ng-hide="elemnt.length == 1">
+                            <a href ng-click="questionelemnt.splice($index, 1)">remove</a>
+                        </span>
+                    </div>
+                    <hr/>
+                </li>
+                <li>
+                   <a href ng-click="newItem($event)">New</a>
+               </li>
+                    </div>
+
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-default">
