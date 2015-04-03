@@ -9,20 +9,20 @@ var mongoose = require('mongoose'),
 /**
  * Answer Schema
  */
+
 var AnswerSchema = new Schema({
-	name: {
+	questionId: {
+		type: Number,
+		default: 0
+	},
+	answer:{
 		type: String,
 		default: '',
-		required: 'Please fill Answer name',
 		trim: true
 	},
-	created: {
-		type: Date,
-		default: Date.now
-	},
-	user: {
-		type: Schema.ObjectId,
-		ref: 'User'
+	surveyId:{
+		type: Number,
+		default: 0
 	}
 });
 

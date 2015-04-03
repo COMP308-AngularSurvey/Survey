@@ -9,6 +9,8 @@ var mongoose = require('mongoose'),
 /**
  * Question Schema
  */
+
+
 var QuestionSchema = new Schema({
 	name: {
 		type: String,
@@ -16,13 +18,41 @@ var QuestionSchema = new Schema({
 		required: 'Please fill Question name',
 		trim: true
 	},
-	created: {
-		type: Date,
-		default: Date.now
+	type: {
+		type: Number, //0 multiple choice 1 for shor answer
+		default: 0
 	},
-	user: {
-		type: Schema.ObjectId,
-		ref: 'User'
+	firstQ: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	secondQ: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	thirdQ: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	forthQ: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	questionId: {
+		type: Number, 
+		default: 1
+	},
+	preId: {
+		type: Number, //if pre == 0 means first question
+		default: 0
+	},
+	nextId: {
+		type: Number, 
+		default: 0 //if next == 0 means last one of
 	}
 });
 
