@@ -27,11 +27,43 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 //choices.
 
     var counter=0;
-    $scope.questionelemnt = [ {id:counter, question : 'Question-Click on me to edit!', answer : '',inline:true} ];
+    $scope.questionelemnt = [];
+    $scope.questionArray = [];
+
+    $scope.questionCountArray = [
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0
+    ];
+    $scope.newQuestion = function($event)
+    {
+    	//push/add current to array.
+    	//creat a new question object.
+    	//clean all boxes,,,
+    	$scope.questionelemnt.length = 0;
+    	var question = new Questions ({
+				name: this.name,
+				type: 1,
+				firstQ: "sasdf",
+				secondQ: "sdfsdf",
+				thirdQ: "dsdfsdf",
+				fourthQ: "ddd"
+			});
+
+			// Redirect after save
+			question.$save(function(response) {
+				$location.path('questions/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+    	$event.preventDefault();
+    }
 
     $scope.newItem = function($event){
         counter++;
-        $scope.questionelemnt.push(  { id:counter, question : 'Question-Click on me to edit!', answer : '',inline:true} );
+        $scope.questionelemnt.push(  
+        	{ id:counter, question : 'Question-Click on me to edit!'} );
         $event.preventDefault();
     }
     $scope.inlinef= function($event,inlinecontrol){
@@ -41,7 +73,6 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
         }else{
             $('#'+ inlinecontrol).css('display','');
         }
-
     }
     $scope.showitems = function($event){
         $('#displayitems').css('visibility','none');
@@ -52,7 +83,12 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 		$scope.create = function() {
 			// Create new Question object
 			var question = new Questions ({
-				name: this.name
+				name: "dsdfsdf",
+				type: 1,
+				firstQ: "sasdf",
+				secondQ: "sdfsdf",
+				thirdQ: "dsdfsdf",
+				fourthQ: "ddd"
 			});
 
 			// Redirect after save

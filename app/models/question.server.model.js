@@ -25,7 +25,7 @@ var QuestionSchema = new Schema({
 	firstQ: {
 		type: String,
 		default: '',
-		trim: true
+		trim: true,
 	},
 	secondQ: {
 		type: String,
