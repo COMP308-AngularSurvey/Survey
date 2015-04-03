@@ -41,18 +41,6 @@ var QuestionSchema = new Schema({
 		type: String,
 		default: '',
 		trim: true
-	},
-	questionId: {
-		type: Number, 
-		default: 1
-	},
-	preId: {
-		type: Number, //if pre == 0 means first question
-		default: 0
-	},
-	nextId: {
-		type: Number, 
-		default: 0 //if next == 0 means last one of
 	}
 });
 

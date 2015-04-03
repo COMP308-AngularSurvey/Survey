@@ -11,10 +11,6 @@ var mongoose = require('mongoose'),
  */
 
 var AnswerSchema = new Schema({
-	questionId: {
-		type: Number,
-		default: 0
-	},
 	answer:{
 		type: String,
 		default: '',

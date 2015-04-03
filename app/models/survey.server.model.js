@@ -10,6 +10,7 @@ var mongoose = require('mongoose'),
  * Survey Schema
  */
 
+
 var SurveySchema = new Schema({
 	name: {
 		type: String,
@@ -25,10 +26,9 @@ var SurveySchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	},
-	firstQuestionId:
-	{
-		type: Schema.ObjectId,
-		ref: 'Question'
+	expire: {
+		type: Date,
+		default: Date.now
 	}
 });
 
