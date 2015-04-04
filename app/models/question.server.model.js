@@ -18,6 +18,11 @@ var QuestionSchema = new Schema({
 		required: 'Please fill Question name',
 		trim: true
 	},
+	surveyId:
+	{
+		type: Schema.ObjectId,
+		ref: 'Survey'
+	},
 	type: {
 		type: Number, //0 multiple choice 1 for shor answer
 		default: 0
@@ -37,7 +42,7 @@ var QuestionSchema = new Schema({
 		default: '',
 		trim: true
 	},
-	forthQ: {
+	fourthQ: {
 		type: String,
 		default: '',
 		trim: true

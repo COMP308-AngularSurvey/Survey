@@ -7,45 +7,34 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 
 //template type
  		$scope.template = {
-        name: 'blue'
+        choice: 1
       };
       
-//numbers of questions 
-      $scope.numberOfQuestions = [
-      {name:'1', value:'1'},
-      {name:'2', value:'2'},
-      {name:'3', value:'3'},
-      {name:'4', value:'4'},
-      {name:'5', value:'5'},
-      {name:'6', value:'6'},
-      {name:'7', value:'7'},
-      {name:'8', value:'8'},
-      {name:'9', value:'9'},
-      {name:'10', value:'10'}
-    ];
-
-//choices.
-
     var counter=0;
+    $scope.questionName = "";
+    $scope.questionTitle = "";
     $scope.questionelemnt = [];
     $scope.questionArray = [];
 
-    $scope.questionCountArray = [
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0
-    ];
-    $scope.newQuestion = function($event)
+    $scope.change = function($event) {
+        $scope.questionTitle = $event;
+      };
+
+// redirect to survey list,
+    $scope.doneQuestion = function($event)
     {
+    	counter = 0;
     	//push/add current to array.
     	//creat a new question object.
     	//clean all boxes,,,
     	$scope.questionelemnt.length = 0;
     	var question = new Questions ({
-				name: this.name,
-				type: 1,
-				firstQ: "sasdf",
-				secondQ: "sdfsdf",
-				thirdQ: "dsdfsdf",
-				fourthQ: "ddd"
+				name: $scope.questionName,
+				type: $scope.template.choice,
+				firstQ: ($scope.questionelemnt[0]).question,
+				secondQ: $scope.questionelemnt.length > 2 ? ($scope.questionelemnt[1]).question : "",
+				thirdQ: $scope.questionelemnt.length > 3 ? ($scope.questionelemnt[2]).question : "",
+				fourthQ: $scope.questionelemnt.length > 4 ? ($scope.questionelemnt[3]).question : ""
 			});
 
 			// Redirect after save
@@ -57,13 +46,43 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
-    	$event.preventDefault();
+    	//$event.preventDefault();
+    	$scope.questionelemnt.length = 0;
+    }
+	//reset + insert
+    $scope.newQuestion = function($event)
+    {
+    	counter = 0;
+    	//push/add current to array.
+    	//creat a new question object.
+    	//clean all boxes,,,
+    	var question = new Questions ({
+				name: $scope.questionName,
+				type: $scope.template.choice,
+				firstQ: ($scope.questionelemnt[0]).question,
+				secondQ: $scope.questionelemnt.length > 2 ? ($scope.questionelemnt[1]).question : "",
+				thirdQ: $scope.questionelemnt.length > 3 ? ($scope.questionelemnt[2]).question : "",
+				fourthQ: $scope.questionelemnt.length > 4 ? ($scope.questionelemnt[3]).question : ""
+			});
+
+			// Redirect after save
+			question.$save(function(response) {
+				//$location.path('questions/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+    	//$event.preventDefault();
+
+    	$scope.questionelemnt.length = 0;
     }
 
     $scope.newItem = function($event){
         counter++;
         $scope.questionelemnt.push(  
-        	{ id:counter, question : 'Question-Click on me to edit!'} );
+        	{ id:counter, question : "please input a new choice"} );
         $event.preventDefault();
     }
     $scope.inlinef= function($event,inlinecontrol){
@@ -82,14 +101,6 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 		// Create new Question
 		$scope.create = function() {
 			// Create new Question object
-			var question = new Questions ({
-				name: "dsdfsdf",
-				type: 1,
-				firstQ: "sasdf",
-				secondQ: "sdfsdf",
-				thirdQ: "dsdfsdf",
-				fourthQ: "ddd"
-			});
 
 			// Redirect after save
 			question.$save(function(response) {
