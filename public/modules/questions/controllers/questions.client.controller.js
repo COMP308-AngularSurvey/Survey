@@ -6,13 +6,13 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 		$scope.authentication = Authentication;
 
 //template type
- 		$scope.template = {
+ 	$scope.template = {
         choice: 1
       };
       
     var counter=0;
-    $scope.questionName = "";
-    $scope.questionTitle = "";
+    $scope.questionName = '';
+    $scope.questionTitle = '';
     $scope.questionelemnt = [];
     $scope.questionArray = [];
 
@@ -30,11 +30,12 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
     	$scope.questionelemnt.length = 0;
     	var question = new Questions ({
 				name: $scope.questionName,
+				surveyId: 1142,
 				type: $scope.template.choice,
 				firstQ: ($scope.questionelemnt[0]).question,
-				secondQ: $scope.questionelemnt.length > 2 ? ($scope.questionelemnt[1]).question : "",
-				thirdQ: $scope.questionelemnt.length > 3 ? ($scope.questionelemnt[2]).question : "",
-				fourthQ: $scope.questionelemnt.length > 4 ? ($scope.questionelemnt[3]).question : ""
+				secondQ: $scope.questionelemnt.length > 2 ? ($scope.questionelemnt[1]).question : '',
+				thirdQ: $scope.questionelemnt.length > 3 ? ($scope.questionelemnt[2]).question : '',
+				fourthQ: $scope.questionelemnt.length > 4 ? ($scope.questionelemnt[3]).question : ''
 			});
 
 			// Redirect after save
@@ -48,7 +49,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 			});
     	//$event.preventDefault();
     	$scope.questionelemnt.length = 0;
-    }
+    };
 	//reset + insert
     $scope.newQuestion = function($event)
     {
@@ -59,10 +60,11 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
     	var question = new Questions ({
 				name: $scope.questionName,
 				type: $scope.template.choice,
+				surveyId: 1142,
 				firstQ: ($scope.questionelemnt[0]).question,
-				secondQ: $scope.questionelemnt.length > 2 ? ($scope.questionelemnt[1]).question : "",
-				thirdQ: $scope.questionelemnt.length > 3 ? ($scope.questionelemnt[2]).question : "",
-				fourthQ: $scope.questionelemnt.length > 4 ? ($scope.questionelemnt[3]).question : ""
+				secondQ: $scope.questionelemnt.length > 2 ? ($scope.questionelemnt[1]).question : '',
+				thirdQ: $scope.questionelemnt.length > 3 ? ($scope.questionelemnt[2]).question : '',
+				fourthQ: $scope.questionelemnt.length > 4 ? ($scope.questionelemnt[3]).question : ''
 			});
 
 			// Redirect after save
@@ -77,33 +79,22 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
     	//$event.preventDefault();
 
     	$scope.questionelemnt.length = 0;
-    }
+    };
 
     $scope.newItem = function($event){
         counter++;
         $scope.questionelemnt.push(  
-        	{ id:counter, question : "please input a new choice"} );
+        	{ id:counter, question : 'please input a new choice'} );
         $event.preventDefault();
-    }
-    $scope.inlinef= function($event,inlinecontrol){
-        var checkbox = $event.target;
-        if(checkbox.checked){
-            $('#'+ inlinecontrol).css('display','inline');
-        }else{
-            $('#'+ inlinecontrol).css('display','');
-        }
-    }
-    $scope.showitems = function($event){
-        $('#displayitems').css('visibility','none');
-    }
-
+    };
+   
 	//default
 		// Create new Question
 		$scope.create = function() {
 			// Create new Question object
 
 			// Redirect after save
-			question.$save(function(response) {
+			$scope.questionelemnt.$save(function(response) {
 				$location.path('questions/' + response._id);
 
 				// Clear form fields

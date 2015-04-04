@@ -20,8 +20,9 @@ var QuestionSchema = new Schema({
 	},
 	surveyId:
 	{
-		type: Schema.ObjectId,
-		ref: 'Survey'
+		type: String,
+		trim: true,
+		default: ''
 	},
 	type: {
 		type: Number, //0 multiple choice 1 for shor answer

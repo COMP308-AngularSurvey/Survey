@@ -1,6 +1,7 @@
 <section data-ng-controller="QuestionsController" data-ng-init="findOne()">
 	<div class="page-header">
 		<h1 data-ng-bind="question.name"></h1>
+		<h3 data-ng-bind="question.surveyId"></h3>
 	</div>
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == question.user._id))">
 		<a class="btn btn-primary" href="/#!/questions/{{question._id}}/edit">
@@ -35,7 +36,7 @@
 		<span data-ng-bind="question.type"></span>
 	</li>
 	<span>
-		<a href ng-click="nextQuestion($event)">Next</a>
+		<a href ng-click="DoneSurvey($event)">Done</a>
                </span>
 
 </section>

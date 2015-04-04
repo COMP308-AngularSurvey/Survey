@@ -5,6 +5,19 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
 	function($scope, $stateParams, $location, Authentication, Surveys) {
 		$scope.authentication = Authentication;
 
+		$scope.createWithName = function($event)
+		{
+			var survey = new Surveys ({
+				name: $event
+			}); 
+
+			survey.$save(function(response) {
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
 		// Create new Survey
 		$scope.create = function() {
 			// Create new Survey object
