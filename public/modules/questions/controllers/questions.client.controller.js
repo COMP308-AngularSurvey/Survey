@@ -15,7 +15,12 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
     $scope.questionTitle = '';
     $scope.questionelemnt = [];
     $scope.questionArray = [];
-
+	$scope.testParameter = $location.url();
+	 $scope.arraytemp = $scope.testParameter.split('=');
+	 if($scope.arraytemp.length >=2)
+	 {
+	 	$scope.testParameter = $scope.arraytemp[1];
+	 }
     $scope.change = function($event) {
         $scope.questionTitle = $event;
       };
@@ -30,7 +35,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
     	$scope.questionelemnt.length = 0;
     	var question = new Questions ({
 				name: $scope.questionName,
-				surveyId: 1142,
+				surveyId: $scope.testParameter,
 				type: $scope.template.choice,
 				firstQ: ($scope.questionelemnt[0]).question,
 				secondQ: $scope.questionelemnt.length > 2 ? ($scope.questionelemnt[1]).question : '',
@@ -60,7 +65,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
     	var question = new Questions ({
 				name: $scope.questionName,
 				type: $scope.template.choice,
-				surveyId: 1142,
+				surveyId: $scope.testParameter,
 				firstQ: ($scope.questionelemnt[0]).question,
 				secondQ: $scope.questionelemnt.length > 2 ? ($scope.questionelemnt[1]).question : '',
 				thirdQ: $scope.questionelemnt.length > 3 ? ($scope.questionelemnt[2]).question : '',
@@ -132,6 +137,14 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 			});
 		};
 
+		$scope.findById = function()
+		{
+			$scope.questions = Questions.get({ 
+				surveyId: $scope.testParameter
+			});
+
+			//$scope.questions = Questions.query(surveyId:$scope.testParameter);
+		};
 		// Find a list of Questions
 		$scope.find = function() {
 			$scope.questions = Questions.query();

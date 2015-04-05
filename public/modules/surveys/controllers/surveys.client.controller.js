@@ -5,15 +5,18 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
 	function($scope, $stateParams, $location, Authentication, Surveys) {
 		$scope.authentication = Authentication;
 
+		$scope.surveyname = '';
+		$scope.surveyId = '';
 		$scope.createWithName = function($event)
 		{
 			var survey = new Surveys ({
-				name: $event
+				name: $scope.surveyname
 			}); 
 
 			survey.$save(function(response) {
-				// Clear form fields
-				$scope.name = '';
+				// Clear form fields.
+				$scope.surveyId = response._id;
+				$scope.surveyname = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -27,7 +30,7 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
 
 			// Redirect after save
 			survey.$save(function(response) {
-				$location.path('surveys/' + response._id);
+				$location.path('questions/create' + '').search({param: response._id});
 
 				// Clear form fields
 				$scope.name = '';
