@@ -18,7 +18,7 @@ var SurveySchema = new Schema({
 		required: 'Please fill Survey name',
 		trim: true
 	},
-	created: {
+	createDate: {
 		type: Date,
 		default: Date.now
 	},
@@ -26,10 +26,18 @@ var SurveySchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	},
-	expire: {
+    startDate: {
+        type: Date,
+        default: Date.now
+    },
+	expireDate: {
 		type: Date,
 		default: Date.now
-	}
+	},
+    isValid : {
+        type: Boolean,
+        default: false
+    }
 });
 
 mongoose.model('Survey', SurveySchema);

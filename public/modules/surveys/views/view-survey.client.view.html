@@ -13,9 +13,21 @@
 	<small>
 		<em class="text-muted">
 			Posted on
-			<span data-ng-bind="survey.created | date:'mediumDate'"></span>
+			<span data-ng-bind="survey.createDate | date:'mediumDate'"></span>
 			by
 			<span data-ng-bind="survey.user.displayName"></span>
+			<br/>
+			Start on
+			<span data-ng-bind="survey.startDate | date:'mediumDate'"></span>
+			<br/>
+			Expire on
+			<span data-ng-bind="survey.expireDate | date:'mediumDate'"></span>
+			<br/>
+			<span>
+			     <div ng-show="survey.isValid">Status : OPEN</div>
+                <div ng-show="!survey.isValid">Status : CLOSED</div>
+			</span>
+			
 		</em>
 	</small>
 </section>

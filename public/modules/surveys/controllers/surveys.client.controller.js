@@ -5,35 +5,37 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
 	function($scope, $stateParams, $location, Authentication, Surveys) {
 		$scope.authentication = Authentication;
 
-		$scope.surveyname = '';
+		$scope.surveyname = 'some name';
 		$scope.surveyId = '';
-		$scope.createWithName = function($event)
-		{
-			var survey = new Surveys ({
-				name: $scope.surveyname
-			}); 
+        $scope.createDate = new Date(2015,3,5);
+        $scope.startDate = new Date();
+        
+        var today = new Date();
+        var expire = new Date();
+        expire.setDate(today.getDate()+30);
+        $scope.expireDate = expire;
 
-			survey.$save(function(response) {
-				// Clear form fields.
-				$scope.surveyId = response._id;
-				$scope.surveyname = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
+        $scope.isValid = true;
+        
 		// Create new Survey
 		$scope.create = function() {
 			// Create new Survey object
 			var survey = new Surveys ({
-				name: this.name
+				name: this.name,
+                createDate: this.createDate,
+                startDate: this.startDate,
+                expireDate: this.expireDate,
+                isValid: this.isValid
 			});
-
+console.log(survey.name + ' '  + survey.createDate + ' ' + survey.expireDate + ' ' + survey.isValid);
 			// Redirect after save
 			survey.$save(function(response) {
 				$location.path('questions/create' + '').search({param: response._id});
 
 				// Clear form fields
 				$scope.name = '';
+                //$scope.created = new Date();
+                //$scope.expire = new Date().setDate(Date.now.getDate() + 30);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
