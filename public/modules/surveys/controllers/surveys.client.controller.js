@@ -34,8 +34,6 @@ console.log(survey.name + ' '  + survey.createDate + ' ' + survey.expireDate + '
 
 				// Clear form fields
 				$scope.name = '';
-                //$scope.created = new Date();
-                //$scope.expire = new Date().setDate(Date.now.getDate() + 30);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -61,6 +59,11 @@ console.log(survey.name + ' '  + survey.createDate + ' ' + survey.expireDate + '
 		// Update existing Survey
 		$scope.update = function() {
 			var survey = $scope.survey;
+            survey.startDate = this.startDate;
+            survey.expireDate = this.expireDate;
+            
+            
+            console.log($scope.survey.startDate + '  ' + this.startDate);
 
 			survey.$update(function() {
 				$location.path('surveys/' + survey._id);
@@ -80,5 +83,12 @@ console.log(survey.name + ' '  + survey.createDate + ' ' + survey.expireDate + '
 				surveyId: $stateParams.surveyId
 			});
 		};
+        // pop up calander
+        $scope.open = function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+            $scope.opened = true;
+        };
+        
 	}
 ]);

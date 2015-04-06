@@ -23,6 +23,13 @@
                        </div>
                        <div class="col-md-2">
                         <div class="controls">
+                             <p class="input-group">
+                              <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="startDate" is-open="opened" min-date="startDate" max-date="'2099-12-31'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                              </span>
+                            </p>                            
                             <input type="date" data-ng-model="survey.startDate" id="startDate" class="form-control" required>
                         </div>
                         </div>
@@ -33,6 +40,13 @@
                        
                        <div class="col-md-2">
                         <div class="controls">
+                             <p class="input-group">
+                              <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="expireDate" is-open="opened" min-date="startDate" max-date="'2099-12-31'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                              </span>
+                            </p>                            
                             <input type="date" data-ng-model="survey.expireDate" id="expireDate" class="form-control" placeholder="expireDate" required value="{{ expireDate | date: 'yyyy-MM-dd' }}">
                         </div>
                         </div>
