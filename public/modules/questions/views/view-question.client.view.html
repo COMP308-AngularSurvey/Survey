@@ -1,3 +1,10 @@
+<section data-ng-controller="QuestionsController" data-ng-init="findById()">
+	<div class="page-header">
+		<h2>questionsWithId<h2>
+	<h1 data-ng-bind="questionsWithId.length"></h1>
+	</div>
+</section>
+
 <section data-ng-controller="QuestionsController" data-ng-init="findOne()">
 	<div class="page-header">
 		<h1 data-ng-bind="question.name"></h1>

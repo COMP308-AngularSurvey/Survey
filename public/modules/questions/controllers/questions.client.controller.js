@@ -14,7 +14,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
     $scope.questionName = '';
     $scope.questionTitle = '';
     $scope.questionelemnt = [];
-    $scope.questionArray = [];
+    $scope.questionsWithId = [];
 	$scope.testParameter = $location.url();
 	 $scope.arraytemp = $scope.testParameter.split('=');
 	 if($scope.arraytemp.length >=2)
@@ -139,12 +139,22 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 
 		$scope.findById = function()
 		{
-			$scope.questions = Questions.get({ 
-				surveyId: $scope.testParameter
-			});
-
+			// $scope.questions = Questions.get({ 
+			// 	surveyId: '55209d8d4416313c18bceb20'
+			// });
+			$scope.questions = Questions.query();
+			for (var i in $scope.questions) {
+					
+						$scope.questionsWithId.push(($scope.questions[i])._id);
+				//	}
+				}
+				for(var i =0; i<=questions.length;i++)
+				{
+					$scope.questionsWithId.push(($scope.questions[i])._id);
+				}
 			//$scope.questions = Questions.query(surveyId:$scope.testParameter);
 		};
+
 		// Find a list of Questions
 		$scope.find = function() {
 			$scope.questions = Questions.query();
