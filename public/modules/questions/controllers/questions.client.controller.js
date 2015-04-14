@@ -148,7 +148,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 						$scope.questionsWithId.push(($scope.questions[i])._id);
 				//	}
 				}
-				for(var i =0; i<=questions.length;i++)
+				for(var j =0; j<=$scope.questions.length;j++)
 				{
 					$scope.questionsWithId.push(($scope.questions[i])._id);
 				}
@@ -181,7 +181,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 				fourthQ: 'Forth Answer',
 				firstQ: 'First Answer'
 				}
-			]
+			];
 		};
 
 		// Find existing Question
