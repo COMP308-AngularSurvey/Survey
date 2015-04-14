@@ -97,7 +97,7 @@ exports.questionByID = function(req, res, next, id) {
 };
 
 exports.questionBySurveyId= function(req, res, next, id) { 
-	Question.find({ surveyId: '' }).populate('user', 'displayName').exec(function(err, question) {
+	Question.find({ surveyId: '55209d8d4416313c18bceb20' }).populate('user', 'displayName').exec(function(err, question) {
 		if (err) return next(err);
 		if (! question) return next(new Error('Failed to load Question ' + id));
 		req.question = question ;
