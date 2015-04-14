@@ -15,7 +15,7 @@ module.exports = function(app) {
 		.delete(users.requiresLogin, questions.hasAuthorization, questions.delete);
 
 	app.route('/getsurveyquestion/:surveyid')
-		.get(questions.list)
+		.get(questions.read)
 		.put(users.requiresLogin, questions.hasAuthorization, questions.update)
 		.delete(users.requiresLogin, questions.hasAuthorization, questions.delete);
 
