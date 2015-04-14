@@ -143,14 +143,14 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 			// 	surveyId: '55209d8d4416313c18bceb20'
 			// });
 			$scope.questions = Questions.query();
-			for (var i in $scope.questions) {
+			for (var j in $scope.questions) {
 					
-						$scope.questionsWithId.push(($scope.questions[i])._id);
+						$scope.questionsWithId.push(($scope.questions[j])._id);
 				//	}
 				}
-				for(var i =0; i<=questions.length;i++)
+				for(var k =0; k<=$scope.questions.length;k++)
 				{
-					$scope.questionsWithId.push(($scope.questions[i])._id);
+					$scope.questionsWithId.push(($scope.questions[k])._id);
 				}
 			//$scope.questions = Questions.query(surveyId:$scope.testParameter);
 		};
@@ -181,7 +181,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 				fourthQ: 'Forth Answer',
 				firstQ: 'First Answer'
 				}
-			]
+			];
 		};
 
 		// Find existing Question
