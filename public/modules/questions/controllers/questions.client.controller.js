@@ -193,9 +193,10 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 
 		$scope.findQuestions = function()
 		{
+			//'55209d8d4416313c18bceb20'
 			$scope.questions = [];
 			$scope.questions = Questions.get({ 
-				surveyId: '55209d8d4416313c18bceb20'
+				surveyId: $stateParams.surveyid
 			});
 		};
 	}
