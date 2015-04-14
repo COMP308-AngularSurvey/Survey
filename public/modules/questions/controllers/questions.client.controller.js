@@ -190,5 +190,13 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 				questionId: $stateParams.questionId
 			});
 		};
+
+		$scope.findQuestions = function()
+		{
+			$scope.questions = [];
+			$scope.questions = Questions.get({ 
+				surveyId: '55209d8d4416313c18bceb20'
+			});
+		};
 	}
 ]);

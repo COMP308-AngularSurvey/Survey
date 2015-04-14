@@ -7,6 +7,9 @@ angular.module('questions').factory('Questions', ['$resource',
 		}, {
 			update: {
 				method: 'PUT'
+			},
+			get: {
+				method: 'get', isArray:true
 			}
 		});
 	}

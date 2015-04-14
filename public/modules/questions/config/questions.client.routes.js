@@ -20,6 +20,10 @@ angular.module('questions').config(['$stateProvider',
 		state('editQuestion', {
 			url: '/questions/:questionId/edit',
 			templateUrl: 'modules/questions/views/edit-question.client.view.html'
+		}).
+		state('Qedituestion', {
+			url: '/getsurveyquestion/:surveyid',
+			templateUrl: 'modules/questions/views/view-question.client.view2.html'
 		});
 	}
 ]);
