@@ -1,14 +1,10 @@
-<section data-ng-controller="QuestionsController" data-ng-init="findById()">
-	<div class="page-header">
-		<h2>questionsWithId<h2>
-	<h1 data-ng-bind="questionsWithId.length"></h1>
-	</div>
-</section>
+<section data-ng-controller="QuestionsController" data-ng-init="findTest()">
 
-<section data-ng-controller="QuestionsController" data-ng-init="findOne()">
+
 	<div class="page-header">
-		<h1 data-ng-bind="question.name"></h1>
-		<h3 data-ng-bind="question.surveyId"></h3>
+		<h1>Survey Name </h1>
+<!-- 		<h1 data-ng-bind="question.name"></h1>
+		<h3 data-ng-bind="question.surveyId"></h3> -->
 	</div>
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == question.user._id))">
 		<a class="btn btn-primary" href="/#!/questions/{{question._id}}/edit">
@@ -26,24 +22,27 @@
 			<span data-ng-bind="question.user.displayName"></span>
 		</em>
 	</small> -->
-	<li ng-hide="question.firstQ==''">
+<div class="list-group">
+	<ul data-ng-repeat="question in questions" class="list-group-item">
+	<li ng-hide="question.name==''" class="no-bullets">
+		 {{question.name}} <br/>
+	</li>
+	<li ng-hide="question.firstQ==''" class="no-bullets">
 		<input type="radio" ng-model= "question.ObjectId" value="question.firstQ">  {{question.firstQ}} <br/>
 	</li>
-	<li ng-hide="question.secondQ==''">
+	<li ng-hide="question.secondQ==''" class="no-bullets">
 		<input type="radio" ng-model= "question.ObjectId" value="question.secondQ">  {{question.secondQ}} <br/>
 	</li>
-	<li  ng-hide="question.thirdQ==''">
+	<li  ng-hide="question.thirdQ==''" class="no-bullets">
 		<input type="radio" ng-model= "question.ObjectId" value="question.thirdQ">  {{question.thirdQ}} <br/>
 	</li>
-	<li ng-hide="question.fourthQ===''">
+	<li ng-hide="question.fourthQ===''" class="no-bullets">
 		<input type="radio" ng-model= "question.ObjectId" value="question.fourthQ">  {{question.fourthQ}} <br/>
 	</li>
-	<li>
-		question.type: 
-		<span data-ng-bind="question.type"></span>
-	</li>
+</ul>
+</div>
+
 	<span>
 		<a href ng-click="DoneSurvey($event)">Done</a>
                </span>
-
 </section>

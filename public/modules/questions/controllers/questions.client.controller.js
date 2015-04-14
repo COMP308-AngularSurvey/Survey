@@ -161,6 +161,30 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 		};
 
 		// Find existing Question
+		$scope.findTest = function() {
+			$scope.questions = [
+			{
+				name: 'Question1',
+				type: '',
+				surveyId: '',
+				secondQ:'Second Answer',
+				thirdQ:'Third Answer',
+				fourthQ: 'Forth Answer',
+				firstQ: 'First Answer'
+				},
+				{
+				name: 'question2',
+				type: '',
+				surveyId: '',
+				secondQ:'Second Answer',
+				thirdQ:'Third Answer',
+				fourthQ: 'Forth Answer',
+				firstQ: 'First Answer'
+				}
+			]
+		};
+
+		// Find existing Question
 		$scope.findOne = function() {
 			$scope.question = Questions.get({ 
 				questionId: $stateParams.questionId

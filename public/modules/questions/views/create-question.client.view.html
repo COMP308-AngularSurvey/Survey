@@ -1,26 +1,27 @@
 <section data-ng-controller="QuestionsController">
     <div class="page-header">
         <h1>New Question</h1>
-        <h3 data-ng-bind="testParameter"></h3>
+        <!-- <h3 data-ng-bind="testParameter"></h3> -->
     </div>
     <div class="col-md-12">
-                     <label class="control-label" for="name">Choose a template</label>
+                <!--      <label class="control-label" for="name">Choose a template</label>
                      <div class="controls">
                         <input type="radio" ng-model="template.choice" ng-value=1> Multiple Choices <br/>
                           <input type="radio" ng-model="template.choice" ng-value=2> Short Answers <br/>
-                    </div>
+                    </div> -->
                 </br>
                     <div class="controls">
                         <ul>
                             <span>
                                 <input type="text" ng-model="questionName" placeholder="Question title" required/>
                             </span>
-                            
+                          </br>
+                        </br>
                 <li ng-repeat="elemnt in questionelemnt">
 
                     <div>
                        Question{{$index + 1}}: 
-                        <div id={{elemnt.id}} style="display:inline" >
+                        <div id={{elemnt.id}} >
                             <span  ng-model="elemnt.question" ng-hide="editorEnabled" ng-click="editorEnabled=true">
                                 {{elemnt.question}}
                             </span>
@@ -29,20 +30,20 @@
                                 <button href="#" ng-click="editorEnabled=false; change(elemnt.question)">Done editing</button>
                             </div>
                         </div>
-                        
                         <span ng-hide="elemnt.length == 1">
                             <a href ng-click="questionelemnt.splice($index, 1)">remove</a>
                         </span>
                     </div>
                     <hr/>
                 </li>
+                <br>
                 <span>
                    <a href ng-click="newItem($event)">New Choice</a>
                </span>
                <span>
                    <a href ng-click="newQuestion($event)">New Question</a>
                </span>
-<span>
+               <span>
                    <a href ng-click="doneQuestion($event)">Done Survey</a>
                </span>
                </ul>
