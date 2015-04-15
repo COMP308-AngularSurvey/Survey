@@ -3,18 +3,6 @@
 //Questions service used to communicate Questions REST endpoints
 angular.module('questions').factory('Questions', ['$resource',
 	function($resource) {
-		return $resource('questions/:questionId', { questionId: '@_id'
-		}, {
-			update: {
-				method: 'PUT'
-			},
-			get: {
-				method: 'get', isArray:true
-			}
-		});
-	}
-]).factory('Questions', ['$resource',
-	function($resource) {
 		return $resource('getsurveyquestion/:surveyId', { surveyId: '@surveyId'
 		}, {
 			update: {
@@ -28,3 +16,17 @@ angular.module('questions').factory('Questions', ['$resource',
 ]);
 
 // http://localhost:3000/#!/getsurveyquestion/55209da64416313c18bceb21
+
+// factory('Questions', ['$resource',
+// 	function($resource) {
+// 		return $resource('questions/:questionId', { questionId: '@_id'
+// 		}, {
+// 			update: {
+// 				method: 'PUT'
+// 			},
+// 			get: {
+// 				method: 'get', isArray:true
+// 			}
+// 		});
+// 	}
+// ]).
