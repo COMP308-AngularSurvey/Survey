@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = {
-	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-survey',
+	//db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-survey',
+	db: 'mongodb://heroku_app35905571:q04rebebvrqg3botp45a4215nr@ds061691.mongolab.com:61691/heroku_app35905571?replicaSet=rs-ds061691',
 	assets: {
 		lib: {
 			css: [

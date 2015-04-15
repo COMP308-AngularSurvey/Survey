@@ -194,7 +194,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 		$scope.findQuestions = function()
 		{
 			$scope.questions = [];
-			$scope.questions = Questions.get({ 
+			$scope.questions = Questions.countries.get({ 
 				surveyId: '55209d8d4416313c18bceb20'
 			});
 		};

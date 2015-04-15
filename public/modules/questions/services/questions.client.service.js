@@ -14,3 +14,5 @@ angular.module('questions').factory('Questions', ['$resource',
 		});
 	}
 ]);
+
+		// return $resource('getsurveyquestion/:surveyId', { surveyId: '@_id'
