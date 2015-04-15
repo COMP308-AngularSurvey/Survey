@@ -1,8 +1,47 @@
 'use strict';
 
+
+//var Answersitems = angular.module('Answers', []);
+
+
+// var app = angular.module('answers', []);
+
+// app.service('sharedProperties', function() {
+//     var stringValue = 'test string value';
+//     var objectValue = {
+//         data: 'test object value'
+//     };
+    
+//     return {
+//         getString: function() {
+//             return stringValue;
+//         },
+//         setString: function(value) {
+//             stringValue = value;
+//         },
+//         getObject: function() {
+//             return objectValue;
+//         }
+//     };
+// });
+
+// app.controller('AnswersController', function($scope, $timeout, sharedProperties) {
+//     $scope.stringValue = sharedProperties.getString();
+//     $scope.objectValue = sharedProperties.getObject().data;    
+// });
+
+// app.controller('myController2', function($scope, sharedProperties) {
+//     $scope.stringValue = sharedProperties.getString;
+//     $scope.objectValue = sharedProperties.getObject();
+//     $scope.setString = function(newValue) {
+//         $scope.objectValue.data = newValue;
+//         sharedProperties.setString(newValue);
+//     };
+// });
+
 // Questions controller
 angular.module('questions').controller('QuestionsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Questions',
-	function($scope, $stateParams, $location, Authentication, Questions) {
+	function($scope, $stateParams, $location, Authentication, Questions, Answers) {
 		$scope.authentication = Authentication;
 
 //template type
@@ -191,12 +230,37 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 			});
 		};
 
+			//'55209d8d4416313c18bceb20'
+		$scope.questionslist = [];
 		$scope.findQuestions = function()
 		{
 			$scope.questions = [];
 			$scope.questions = Questions.countries.get({ 
 				surveyId: '55209d8d4416313c18bceb20'
 			});
+			console.log($scope.questionslist.length);
+
 		};
+
+	$scope.doneAnswering = function()
+		{
+			var questionid = $scope.questionslist[0]._id;
+			var surveyId = $scope.questionslist[0].surveyId;
+
+			console.log(questionid + '  ' + surveyId);
+			var newAnswer = new Answers ({
+				answer: '1',
+				questionId: questionid,
+				surveyId: surveyId
+			});
+
+			newAnswer.$save(function(response) {
+				//$location.path('questions/' + response._id);
+
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+	};
+
 	}
 ]);

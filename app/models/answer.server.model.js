@@ -16,6 +16,10 @@ var AnswerSchema = new Schema({
 		default: '',
 		trim: true
 	},
+	questionId:{
+		type: Number,
+		default: 0
+	},
 	surveyId:{
 		type: Number,
 		default: 0

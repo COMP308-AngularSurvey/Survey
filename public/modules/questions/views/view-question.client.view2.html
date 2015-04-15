@@ -23,7 +23,7 @@
 <!-- 
 	http://localhost:3000/#!/getsurveyquestion/55209da64416313c18bceb21 -->
 <div class="list-group">
-	<ul data-ng-repeat="question in questions" class="list-group-item">
+	<ul data-ng-repeat="question in questionslist" class="list-group-item">
 	<li ng-hide="question.name==''" class="no-bullets">
 		 {{question.name}} <br/>
 	</li>
@@ -43,6 +43,6 @@
 </div>
 
 	<span>
-		<a href ng-click="DoneSurvey($event)">Done</a>
+		<a href ng-click="doneAnswering($event)">Done</a>
                </span>
 </section>
