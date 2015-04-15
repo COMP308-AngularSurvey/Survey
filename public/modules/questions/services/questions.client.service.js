@@ -15,9 +15,6 @@ angular.module('questions').factory('Questions', ['$resource',
 	}
 ]);
 
-<<<<<<< HEAD
-		// return $resource('getsurveyquestion/:surveyId', { surveyId: '@_id'
-=======
 // http://localhost:3000/#!/getsurveyquestion/55209da64416313c18bceb21
 
 // factory('Questions', ['$resource',
@@ -33,4 +30,3 @@ angular.module('questions').factory('Questions', ['$resource',
 // 		});
 // 	}
 // ]).
->>>>>>> 1d087daa143e4af5096f4aa5a27f2e052dcd336d
