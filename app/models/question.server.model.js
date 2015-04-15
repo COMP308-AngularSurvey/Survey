@@ -25,7 +25,7 @@ var QuestionSchema = new Schema({
 		default: ''
 	},
 	type: {
-		type: Number, //0 multiple choice 1 for shor answer
+		type: Number, //0 multiple choice 1 for short answer
 		default: 0
 	},
 	firstQ: {
