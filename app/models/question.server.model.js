@@ -33,20 +33,36 @@ var QuestionSchema = new Schema({
 		default: '',
 		trim: true,
 	},
+	firstCount : {
+		type : Number,
+		default : 0,
+	},
 	secondQ: {
 		type: String,
 		default: '',
 		trim: true
+	},
+	secondCount : {
+		type : Number,
+		default : 0
 	},
 	thirdQ: {
 		type: String,
 		default: '',
 		trim: true
 	},
+	thirdCount : {
+		type : Number,
+		default : 0
+	},
 	fourthQ: {
 		type: String,
 		default: '',
 		trim: true
+	},
+	fourthCount : {
+		type : Number,
+		default : ''
 	}
 });
 
