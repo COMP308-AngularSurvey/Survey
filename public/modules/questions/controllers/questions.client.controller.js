@@ -1,44 +1,5 @@
 'use strict';
 
-
-//var Answersitems = angular.module('Answers', []);
-
-
-// var app = angular.module('answers', []);
-
-// app.service('sharedProperties', function() {
-//     var stringValue = 'test string value';
-//     var objectValue = {
-//         data: 'test object value'
-//     };
-    
-//     return {
-//         getString: function() {
-//             return stringValue;
-//         },
-//         setString: function(value) {
-//             stringValue = value;
-//         },
-//         getObject: function() {
-//             return objectValue;
-//         }
-//     };
-// });
-
-// app.controller('AnswersController', function($scope, $timeout, sharedProperties) {
-//     $scope.stringValue = sharedProperties.getString();
-//     $scope.objectValue = sharedProperties.getObject().data;    
-// });
-
-// app.controller('myController2', function($scope, sharedProperties) {
-//     $scope.stringValue = sharedProperties.getString;
-//     $scope.objectValue = sharedProperties.getObject();
-//     $scope.setString = function(newValue) {
-//         $scope.objectValue.data = newValue;
-//         sharedProperties.setString(newValue);
-//     };
-// });
-
 // Questions controller
 angular.module('questions').controller('QuestionsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Questions',
 	function($scope, $stateParams, $location, Authentication, Questions, Answers) {
@@ -71,6 +32,8 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
     	//push/add current to array.
     	//creat a new question object.
     	//clean all boxes,,,
+
+    	console.log($scope.questionelemnt);
     	$scope.questionelemnt.length = 0;
     	var question = new Questions ({
 				name: $scope.questionName,
@@ -97,10 +60,15 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 	//reset + insert
     $scope.newQuestion = function($event)
     {
+    	console.log($scope.questionelemnt[0]);
+    	console.log(($scope.questionelemnt[0]).question);
+    	//console.log(($scope.questionelemnt[1]).question);
+    	console.log($scope.testParameter);
     	counter = 0;
     	//push/add current to array.
     	//creat a new question object.
     	//clean all boxes,,,
+    	//http://localhost:3000/#!/questions/create?param=552ee91ab82ffb141e7bed0e
     	var question = new Questions ({
 				name: $scope.questionName,
 				type: $scope.template.choice,
@@ -130,6 +98,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
         $scope.questionelemnt.push(  
         	{ id:counter, question : 'please input a new choice'} );
         $event.preventDefault();
+        console.log('======' + $scope.questionelemnt);
     };
    
 	//default

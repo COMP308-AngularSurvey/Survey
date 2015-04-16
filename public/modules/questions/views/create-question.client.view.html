@@ -22,7 +22,7 @@
                     <div>
                        Question{{$index + 1}}: 
                         <div id={{elemnt.id}} >
-                            <span  ng-model="elemnt.question" ng-hide="editorEnabled" ng-click="editorEnabled=true">
+                            <span ng-model="elemnt.question" ng-hide="editorEnabled" ng-click="editorEnabled=true">
                                 {{elemnt.question}}
                             </span>
                             <div  ng-show="editorEnabled">
@@ -44,7 +44,7 @@
                    <a href ng-click="newQuestion($event)">New Question</a>
                </span>
                <span>
-                   <a href ng-click="doneQuestion($event)">Done Survey</a>
+                   <a href ng-click="doneQuestion($event)">Done Create</a>
                </span>
                </ul>
                     </div>
