@@ -13,6 +13,15 @@
 .ng-valid.ng-dirty {
 	border-color: #78FA89;
 }
-.home-title{
-	vertical-align:middle;
+.vertical-align {
+  display: flex;
+  flex-direction: row;
+}
+
+.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Optional, to align inner items 
+                              horizontally inside the column */
 }
