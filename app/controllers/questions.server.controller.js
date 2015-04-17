@@ -37,7 +37,25 @@ exports.read = function(req, res) {
  * Update a Question
  */
 exports.update = function(req, res) {
+	console.log('update++++++++++');
 	var question = req.question ;
+
+	question = _.extend(question , req.body);
+
+	question.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(question);
+		}
+	});
+};
+
+exports.updateArray = function(req, res) {
+	console.log('update++++++++++updateArray');
+	var question = req[0].question ;
 
 	question = _.extend(question , req.body);
 

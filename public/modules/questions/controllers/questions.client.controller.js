@@ -213,7 +213,6 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 			var questionid = $scope.questionslist[0]._id;
 			var surveyId = $scope.questionslist[0].surveyId;
 
-
 			for(var k =0; k<$scope.questionslist.length;k++)
 				{
 					if($scope.questionslist[k].select === 'question.firstQ')
@@ -237,25 +236,16 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 						console.log($scope.questionslist[k].secondCount);
 					}
 
-					$scope.questionslist[k].$update(function() {
+				}
+
+
+					var questionUpdate = $scope.questionslist[0];
+					console.log($scope.questionslist[0]);
+					questionUpdate.$update(function() {
 				//$location.path('questions/' + question._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
-				}
-			// console.log(questionid + '  ' + surveyId);
-			// var newAnswer = new Answers ({
-			// 	answer: '1',
-			// 	questionId: questionid,
-			// 	surveyId: surveyId
-			// });
-
-			// newAnswer.$save(function(response) {
-			// 	//$location.path('questions/' + response._id);
-
-			// }, function(errorResponse) {
-			// 	$scope.error = errorResponse.data.message;
-			// });
 	};
 
 	}
