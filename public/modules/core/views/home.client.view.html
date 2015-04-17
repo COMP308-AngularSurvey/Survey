@@ -28,7 +28,7 @@
         <h1>Please check the popular Surveys</h1>
     </div>
     <div class="list-group">
-        <a data-ng-repeat="survey in surveys" data-ng-href="#!/surveys/{{survey._id}}" class="list-group-item">
+        <a data-ng-repeat="survey in surveys |limitTo:5" data-ng-href="#!/surveys/{{survey._id}}" class="list-group-item">
       <h4 class="list-group-item-heading" data-ng-bind="survey.name"></h4>
       <small class="list-group-item-text">
                 Start Date: 
