@@ -22,3 +22,26 @@
         </div>
     </div>
 </section>
+
+<section data-ng-controller="SurveysController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Please check the popular Surveys</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="survey in surveys" data-ng-href="#!/surveys/{{survey._id}}" class="list-group-item">
+      <h4 class="list-group-item-heading" data-ng-bind="survey.name"></h4>
+      <small class="list-group-item-text">
+                Start Date: 
+                <span data-ng-bind="survey.startDate | date:'yyyy-MM-dd'"></span>
+                Expired Date: 
+                <span data-ng-bind="survey.expireDate | date:'yyyy-MM-dd'"></span>
+                <br/>
+                <div ng-show="survey.isValid">Status : OPEN</div>
+                <div ng-show="!survey.isValid">Status : CLOSED</div>
+      </small>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!surveys.$resolved || surveys.length">
+      No Surveys yet, why don't you <a href="/#!/surveys/create">create one</a>?
+    </div>
+</section>
