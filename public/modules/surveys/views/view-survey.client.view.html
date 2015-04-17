@@ -6,8 +6,12 @@
 		<a class="btn btn-primary" href="/#!/surveys/{{survey._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
 		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
+		<a class="btn btn-danger" data-ng-click="remove();">
 			<i class="glyphicon glyphicon-trash"></i>
+		</a>
+		<br><br>
+		<a class="btn btn-success" href="/#!/getstatistic/{{survey._id}}">
+			See Result
 		</a>
 	</div>
 	<small>

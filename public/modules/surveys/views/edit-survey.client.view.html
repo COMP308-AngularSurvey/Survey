@@ -5,6 +5,7 @@
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
             <fieldset>
+                <!-- Survey Name  -->
                 <div class="form-group">
                    <div class="row">
                        <div class="col-md-2">
@@ -15,7 +16,7 @@
                         </div>
                     </div>
                 </div>
-                 
+                <!-- Start Date, Expire Date, date picker  -->
                 <div class="form-group">
                     <div class="row">
                       <div class="col-md-2">
@@ -50,19 +51,20 @@
                         </div>
                     </div>
                 </div>
-                    
-                    <div class="form-group">
-                        <div class="row">
-                           <div class="col-md-2">
-                            <label class="control-label" for="">Open : </label>
-                            </div>
-                            <div class="col-md-2">
-                                <input type="checkbox" data-ng-model="survey.isValid">
-                            </div>
+                <!-- Change Status  -->                    
+                <div class="form-group">
+                    <div class="row">
+                       <div class="col-md-2">
+                        <label class="control-label" for="">Open : </label>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="checkbox" data-ng-model="survey.isValid">
                         </div>
                     </div>
+                </div>
                      
 
+                <!-- Owner  -->
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-2">
@@ -79,16 +81,14 @@
                     </div>
                 </div>
             </div>
-                    
 
-                <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
-                </div>
-                <div data-ng-show="error" class="text-danger">
+          <div class="form-group">
+              <input type="submit" value="Update" class="btn btn-default">
+          </div>
+          <div data-ng-show="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>
 				</div>
-
-            </fieldset>
-        </form>
-    </div>
+      </fieldset>
+    </form>
+  </div>
 </section>
