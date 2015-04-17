@@ -62,7 +62,12 @@ var QuestionSchema = new Schema({
 	},
 	fourthCount : {
 		type : Number,
-		default : ''
+		default : 0
+	},
+	select:{
+		type: String,
+		default: '',
+		trim: true
 	}
 });
 

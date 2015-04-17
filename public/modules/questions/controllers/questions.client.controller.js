@@ -34,7 +34,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
     	//clean all boxes,,,
 
     	console.log($scope.questionelemnt);
-    	$scope.questionelemnt.length = 0;
+    //	$scope.questionelemnt.length = 0;
     	var question = new Questions ({
 				name: $scope.questionName,
 				surveyId: $scope.testParameter,
@@ -156,10 +156,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 						$scope.questionsWithId.push(($scope.questions[j])._id);
 				//	}
 				}
-				for(var k =0; k<=$scope.questions.length;k++)
-				{
-					$scope.questionsWithId.push(($scope.questions[k])._id);
-				}
+				
 			//$scope.questions = Questions.query(surveyId:$scope.testParameter);
 		};
 
@@ -216,19 +213,49 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 			var questionid = $scope.questionslist[0]._id;
 			var surveyId = $scope.questionslist[0].surveyId;
 
-			console.log(questionid + '  ' + surveyId);
-			var newAnswer = new Answers ({
-				answer: '1',
-				questionId: questionid,
-				surveyId: surveyId
-			});
 
-			newAnswer.$save(function(response) {
-				//$location.path('questions/' + response._id);
+			for(var k =0; k<$scope.questionslist.length;k++)
+				{
+					if($scope.questionslist[k].select === 'question.firstQ')
+					{
+						$scope.questionslist[k].firstCount++;
+					}
+					else if($scope.questionslist[k].select === 'question.secondQ')
+					{
+						$scope.questionslist[k].secondCount++;
+					}
+					else if($scope.questionslist[k].select === 'question.thirdQ')
+					{
+						$scope.questionslist[k].thirdCount++;
+					}
+					else if($scope.questionslist[k].select === 'question.fourthQ')
+					{
+						$scope.questionslist[k].fourthCount++;
+					}
+					else
+					{
+						console.log($scope.questionslist[k].secondCount);
+					}
 
+					$scope.questionslist[k].$update(function() {
+				//$location.path('questions/' + question._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
+				}
+			// console.log(questionid + '  ' + surveyId);
+			// var newAnswer = new Answers ({
+			// 	answer: '1',
+			// 	questionId: questionid,
+			// 	surveyId: surveyId
+			// });
+
+			// newAnswer.$save(function(response) {
+			// 	//$location.path('questions/' + response._id);
+
+			// }, function(errorResponse) {
+			// 	$scope.error = errorResponse.data.message;
+			// });
 	};
 
 	}

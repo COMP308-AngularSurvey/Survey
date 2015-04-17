@@ -5,7 +5,7 @@ angular.module('questions').factory('Questions', ['$resource',
 		return $resource('getsurveyquestion/:surveyId', { surveyId: '@surveyId'
 		}, {
 			update: {
-				method: 'PUT'
+				method: 'put'
 			},
 			get: {
 				method: 'get', isArray:true
