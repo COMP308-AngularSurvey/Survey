@@ -14,7 +14,6 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
     $scope.questionName = '';
     $scope.questionTitle = '';
     $scope.questionelemnt = [];
-    $scope.questionsWithId = [];
 	$scope.testParameter = $location.url();
 	 $scope.arraytemp = $scope.testParameter.split('=');
 	 if($scope.arraytemp.length >=2)
@@ -33,24 +32,28 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
     	//creat a new question object.
     	//clean all boxes,,,
 
-    	console.log($scope.questionelemnt);
-    	$scope.questionelemnt.length = 0;
+    	if($scope.questionelemnt.length <= 0)
+    	{
+			$location.path('getsurveyquestion/' + $scope.testParameter);
+		}
+
+    //	$scope.questionelemnt.length = 0;
     	var question = new Questions ({
 				name: $scope.questionName,
 				surveyId: $scope.testParameter,
 				type: $scope.template.choice,
 				firstQ: ($scope.questionelemnt[0]).question,
-				secondQ: $scope.questionelemnt.length > 2 ? ($scope.questionelemnt[1]).question : '',
-				thirdQ: $scope.questionelemnt.length > 3 ? ($scope.questionelemnt[2]).question : '',
-				fourthQ: $scope.questionelemnt.length > 4 ? ($scope.questionelemnt[3]).question : ''
+				secondQ: $scope.questionelemnt.length > 1 ? ($scope.questionelemnt[1]).question : '',
+				thirdQ: $scope.questionelemnt.length > 2 ? ($scope.questionelemnt[2]).question : '',
+				fourthQ: $scope.questionelemnt.length > 3 ? ($scope.questionelemnt[3]).question : ''
 			});
 
 			// Redirect after save
 			question.$save(function(response) {
-				$location.path('questions/' + response._id);
+				$location.path('getsurveyquestion/' + $scope.testParameter);
 
 				// Clear form fields
-				$scope.name = '';
+				$scope.questionName = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -60,10 +63,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 	//reset + insert
     $scope.newQuestion = function($event)
     {
-    	console.log($scope.questionelemnt[0]);
-    	console.log(($scope.questionelemnt[0]).question);
-    	//console.log(($scope.questionelemnt[1]).question);
-    	console.log($scope.testParameter);
+
     	counter = 0;
     	//push/add current to array.
     	//creat a new question object.
@@ -74,17 +74,15 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 				type: $scope.template.choice,
 				surveyId: $scope.testParameter,
 				firstQ: ($scope.questionelemnt[0]).question,
-				secondQ: $scope.questionelemnt.length > 2 ? ($scope.questionelemnt[1]).question : '',
-				thirdQ: $scope.questionelemnt.length > 3 ? ($scope.questionelemnt[2]).question : '',
-				fourthQ: $scope.questionelemnt.length > 4 ? ($scope.questionelemnt[3]).question : ''
+				secondQ: $scope.questionelemnt.length > 1 ? ($scope.questionelemnt[1]).question : '',
+				thirdQ: $scope.questionelemnt.length > 2 ? ($scope.questionelemnt[2]).question : '',
+				fourthQ: $scope.questionelemnt.length > 3 ? ($scope.questionelemnt[3]).question : ''
 			});
 
 			// Redirect after save
 			question.$save(function(response) {
-				//$location.path('questions/' + response._id);
 
-				// Clear form fields
-				$scope.name = '';
+				$scope.questionName = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -145,51 +143,10 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 			});
 		};
 
-		$scope.findById = function()
-		{
-			// $scope.questions = Questions.get({ 
-			// 	surveyId: '55209d8d4416313c18bceb20'
-			// });
-			$scope.questions = Questions.query();
-			for (var j in $scope.questions) {
-					
-						$scope.questionsWithId.push(($scope.questions[j])._id);
-				//	}
-				}
-				for(var k =0; k<=$scope.questions.length;k++)
-				{
-					$scope.questionsWithId.push(($scope.questions[k])._id);
-				}
-			//$scope.questions = Questions.query(surveyId:$scope.testParameter);
-		};
 
 		// Find a list of Questions
 		$scope.find = function() {
 			$scope.questions = Questions.query();
-		};
-
-		// Find existing Question
-		$scope.findTest = function() {
-			$scope.questions = [
-			{
-				name: 'Question1',
-				type: '',
-				surveyId: '',
-				secondQ:'Second Answer',
-				thirdQ:'Third Answer',
-				fourthQ: 'Forth Answer',
-				firstQ: 'First Answer'
-				},
-				{
-				name: 'question2',
-				type: '',
-				surveyId: '',
-				secondQ:'Second Answer',
-				thirdQ:'Third Answer',
-				fourthQ: 'Forth Answer',
-				firstQ: 'First Answer'
-				}
-			];
 		};
 
 		// Find existing Question
@@ -199,7 +156,6 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 			});
 		};
 
-			//'55209d8d4416313c18bceb20'
 		$scope.questionslist = [];
 		$scope.findQuestions = function()
 		{
@@ -216,16 +172,35 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 			var questionid = $scope.questionslist[0]._id;
 			var surveyId = $scope.questionslist[0].surveyId;
 
-			console.log(questionid + '  ' + surveyId);
-			var newAnswer = new Answers ({
-				answer: '1',
-				questionId: questionid,
-				surveyId: surveyId
-			});
+			for(var k =0; k<$scope.questionslist.length;k++)
+				{
+					if($scope.questionslist[k].select === 'question.firstQ')
+					{
+						$scope.questionslist[k].firstCount++;
+					}
+					else if($scope.questionslist[k].select === 'question.secondQ')
+					{
+						$scope.questionslist[k].secondCount++;
+					}
+					else if($scope.questionslist[k].select === 'question.thirdQ')
+					{
+						$scope.questionslist[k].thirdCount++;
+					}
+					else if($scope.questionslist[k].select === 'question.fourthQ')
+					{
+						$scope.questionslist[k].fourthCount++;
+					}
+					else
+					{
+						console.log($scope.questionslist[k].secondCount);
+					}
 
-			newAnswer.$save(function(response) {
-				//$location.path('questions/' + response._id);
+				}
 
+					var questionUpdate = $scope.questionslist[0];
+					console.log($scope.questionslist[0]);
+					questionUpdate.$update(function() {
+				//$location.path('questions/' + question._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

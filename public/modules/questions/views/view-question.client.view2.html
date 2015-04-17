@@ -28,21 +28,20 @@
 		 {{question.name}} <br/>
 	</li>
 	<li ng-hide="question.firstQ==''" class="no-bullets">
-		<input type="radio" ng-model= "question.ObjectId" value="question.firstQ">  {{question.firstQ}} <br/>
+		<input type="radio" ng-model= "question.select" value="question.firstQ">  {{question.firstQ}} <br/>
 	</li>
 	<li ng-hide="question.secondQ==''" class="no-bullets">
-		<input type="radio" ng-model= "question.ObjectId" value="question.secondQ">  {{question.secondQ}} <br/>
+		<input type="radio" ng-model= "question.select" value="question.secondQ">  {{question.secondQ}} <br/>
 	</li>
 	<li  ng-hide="question.thirdQ==''" class="no-bullets">
-		<input type="radio" ng-model= "question.ObjectId" value="question.thirdQ">  {{question.thirdQ}} <br/>
+		<input type="radio" ng-model= "question.select" value="question.thirdQ">  {{question.thirdQ}} <br/>
 	</li>
 	<li ng-hide="question.fourthQ===''" class="no-bullets">
-		<input type="radio" ng-model= "question.ObjectId" value="question.fourthQ">  {{question.fourthQ}} <br/>
+		<input type="radio" ng-model= "question.select" value="question.fourthQ">  {{question.fourthQ}} <br/>
 	</li>
 </ul>
 </div>
-
 	<span>
 		<a href ng-click="doneAnswering($event)">Done</a>
-               </span>
+    </span>
 </section>

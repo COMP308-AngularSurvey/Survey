@@ -37,6 +37,7 @@ exports.read = function(req, res) {
  * Update a Question
  */
 exports.update = function(req, res) {
+	console.log('update++++++++++');
 	var question = req.question ;
 
 	question = _.extend(question , req.body);

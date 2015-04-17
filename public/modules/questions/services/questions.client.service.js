@@ -5,10 +5,13 @@ angular.module('questions').factory('Questions', ['$resource',
 		return $resource('getsurveyquestion/:surveyId', { surveyId: '@surveyId'
 		}, {
 			update: {
-				method: 'PUT'
+				method: 'put', multi: true
 			},
 			get: {
 				method: 'get', isArray:true
+			},
+			updates: {
+				method:'updates', multi: true
 			}
 		});
 	}
