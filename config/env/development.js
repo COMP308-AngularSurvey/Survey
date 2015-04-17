@@ -5,7 +5,7 @@ module.exports = {
 	//db: 'mongodb://zhxhu:angularsurvey@ds053310.mongolab.com:53310/zhxhuangularsurvey',
 	//db: 'mongodb://heroku_app35905571:q04rebebvrqg3botp45a4215nr@ds061691.mongolab.com:61691/heroku_app35905571?replicaSet=rs-ds061691',
 	app: {
-		title: 'MEAN-Survey - Development Environment'
+		title: 'Smart-Survey - Development Environment'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',
