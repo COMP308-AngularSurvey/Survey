@@ -18,8 +18,7 @@ module.exports = function(app) {
 		.get(questions.read)
 		.put(users.requiresLogin, questions.hasAuthorization, questions.update)
 		.delete(users.requiresLogin, questions.hasAuthorization, questions.delete)
-		.post(users.requiresLogin, questions.create)
-		.updates(users.requiresLogin, questions.hasAuthorization, questions.updateArray);
+		.post(users.requiresLogin, questions.create);
 
 	app.param('surveyid', questions.questionBySurveyId);
 	// Finish by binding the Question middleware
