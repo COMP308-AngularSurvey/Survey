@@ -9,9 +9,6 @@ angular.module('questions').factory('Questions', ['$resource',
 			},
 			get: {
 				method: 'get', isArray:true
-			},
-			updates: {
-				method:'updates', multi: true
 			}
 		});
 	}

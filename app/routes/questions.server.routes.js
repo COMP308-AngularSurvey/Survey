@@ -20,6 +20,12 @@ module.exports = function(app) {
 		.delete(users.requiresLogin, questions.hasAuthorization, questions.delete)
 		.post(users.requiresLogin, questions.create);
 
+		app.route('/getstatistic/:surveyid')
+		.get(questions.read)
+		.put(users.requiresLogin, questions.hasAuthorization, questions.update)
+		.delete(users.requiresLogin, questions.hasAuthorization, questions.delete)
+		.post(users.requiresLogin, questions.create);
+
 	app.param('surveyid', questions.questionBySurveyId);
 	// Finish by binding the Question middleware
 	app.param('questionId', questions.questionByID);

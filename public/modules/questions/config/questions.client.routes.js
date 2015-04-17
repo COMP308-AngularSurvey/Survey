@@ -24,6 +24,11 @@ angular.module('questions').config(['$stateProvider',
 		state('Qedituestion', {
 			url: '/getsurveyquestion/:surveyid',
 			templateUrl: 'modules/questions/views/view-question.client.view2.html'
+		}).
+		state('getstatistic', {
+			url: '/getstatistic/:surveyid',
+			templateUrl: 'modules/questions/views/view-question.client.statistic.html'
 		});
+
 	}
 ]);
